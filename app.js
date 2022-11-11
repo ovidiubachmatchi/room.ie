@@ -11,5 +11,5 @@ app.set("view engine", "ejs");
 
 app.get('/', require('./routes/index'));
 app.get('/login', require('./routes/login'));
-
+//test
 app.listen(PORT, console.log('Server is running on port ' + PORT));
