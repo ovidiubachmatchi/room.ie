@@ -4,7 +4,8 @@
   "description": "Ovidiu Bachmatchi thesis",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
+    "start-server": "node app.js",
     "test": "test"
   },
   "repository": {
