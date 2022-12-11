@@ -24,24 +24,19 @@
             </div>
         </div>
         <div id="content">
-            <h2>Search & find roommates in your destination</h2>
+            <h2>Search & find roommates <br> in your destination</h2>
             <div id="search">
-                <form action="/search" method="POST">
-                    <input type="text" name="search" placeholder="Search for a city">
-                    <input type="date" name="moveInDate" placeholder="Move in date">
-                    <input type="date" name="moveOutDate" placeholder="Move out date">
-                    <button type="submit">Search</button>
-                </form>
-                <div id="trending">
-                    <h3>Trending Cities</h3>
-                    <ul>
-                        <li><a href="#">Dublin</a></li>
-                        <li><a href="#">Cork</a></li>
-                        <li><a href="#">Galway</a></li>
-                        <li><a href="#">Limerick</a></li>
-                        <li><a href="#">Waterford</a></li>
-                    </ul>
+                <div id="placeholders">
+                    <p>Search for a city</p>
+                    <p>Move in date</p>
+                    <p>Move out date</p>
                 </div>
+                <form action="/search" method="POST">
+                    <input type="text" name="search">
+                    <input type="month" name="moveInDate" placeholder="Move in date" >
+                    <input type="month" name="moveOutDate" placeholder="Move out date">
+                </form>
+                <button type="submit">Search</button>
             </div>
 </body>
 </html>

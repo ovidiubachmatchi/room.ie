@@ -38,7 +38,7 @@ body {
 
 
 #nav ul li a {
-    padding: 0 2rem 0 2rem;
+    margin: 0 2rem 0 2rem;
     text-decoration: none;
     color: black;
 }
@@ -50,6 +50,103 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 1rem 0 1rem;
-   height: 80vh;
+    height: 70vh;
+    margin: 0 0.2rem 0 0.2rem;
+}
+
+#content h2 {
+    font-family: 'Poppins',sans-serif;
+    font-weight: 700;
+    font-size: 2.625rem;
+    line-height: 2.625rem;
+    letter-spacing: -0.4px;
+    text-align: center;
+    margin-bottom: 2rem;
+    background: radial-gradient(57.92% 1509.14% at 15.38% 28.78%,#61d9ff 0,#1154ff 100%);
+    background-image: radial-gradient(57.92% 1509.14% at 15.38% 28.78%, rgb(97, 217, 255) 0px, rgb(17, 84, 255) 100%);
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-animation: gradient 8s ease infinite;
+    animation: gradient 8s ease infinite;
+    background-size: 200% 200%;
+}
+
+#placeholders {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#placeholders p {
+    font-size: 1rem;
+    font-weight: 100;
+    color: rgb(96, 96, 96);
+    width: 26vw;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#search form input{
+    width: 25vw;
+    margin: 1px;
+    border:rgb(69, 69, 199) solid 2px;
+    height: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+#search form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#search button{
+    height: 2.2rem;
+    border: none;
+    border-radius: 0.5rem;
+    width: 11.5rem;
+    background-color: rgb(69, 69, 199);
+    color: white;
+}
+
+/* media query for desktop */
+
+@media screen and (min-width: 768px) {
+    #content h2 {
+        font-size: 3rem;
+    }
+
+    #placeholders p {
+        font-size: 1.5vw;
+        width: 15vw;
+    }
+
+    #search form input{
+        width: 15vw;
+        border:rgb(69, 69, 199) solid 2px;
+        height: 2rem;
+        border-radius: 0.5rem;
+    }
 }
