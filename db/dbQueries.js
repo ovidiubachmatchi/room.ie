@@ -1,4 +1,8 @@
 const client = require('../db/database.js');
+const express = require('express');
+const path = require("path");
+const preference = require("../routes/preferences")
+
 
 module.exports ={
     addUserQuery:(userDetails,res) =>{
