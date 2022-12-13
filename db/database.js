@@ -1,4 +1,6 @@
-const { Client } = require('pg');
+const {
+  Client
+} = require('pg');
 require('dotenv').config();
 
 const client = new Client({
@@ -11,7 +13,7 @@ const client = new Client({
 
 client.connect((err) => {
   if (err) {
-    console.error('connection error', err.stack);
+    console.error('connection error: \n', err.stack);
   } else {
     console.log('connected to database');
   }
