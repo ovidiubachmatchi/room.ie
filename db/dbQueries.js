@@ -1,17 +1,39 @@
 const client = require('../db/database.js');
 
-module.exports ={
-    addUserQuery:(userDetails,res) =>{
-        let queryText = 'INSERT INTO "LogInCredential"("UserNameLog", "UserPassLog") VALUES ($1, $2)'
-        let values = []
-        values.push(userDetails.UserName)
-        values.push(userDetails.Password)
-        client.query(queryText, values).then(result =>{
-            console.log(result)
-            res.send(result)
-        }).catch(err => {
-            res.status = 401
-            res.send(err)
-        })
-    }
+function addUserToDB(user) {
+    // add user to db
+    const values = [user.name, user.password];
+    const queryText = `
+        INSERT INTO users (name, password)
+        VALUES (?, ?)
+      `;
+    client.run(queryText, values, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('User added to db');
+        }
+    });
+}
+
+function addUserQuery(user, res) {
+    // check if user already exists query
+    const checkUserQuery = `SELECT * FROM users WHERE name = ?`;
+    client.get(checkUserQuery, [user.name], (err, row) => {
+        // if call to db fails
+        if (err) {
+            console.log(err);
+        } else if (row) {
+            // if user already exists
+            res.status(409).send('User already exists');
+        } else {
+            // if user does not exist
+            addUserToDB(user);
+            res.status(201).send('User added to db' + user.name);
+        }
+    });
+}
+
+module.exports = {
+    addUserQuery
 }

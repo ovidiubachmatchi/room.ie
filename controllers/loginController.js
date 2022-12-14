@@ -1,6 +1,6 @@
 const loginView = (req, res) => {
     res.render("login", {
-        title: "testing"
+        title: "ROOM.IE | Login"
     } );
 }
 

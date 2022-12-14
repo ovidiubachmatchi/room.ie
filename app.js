@@ -6,6 +6,7 @@ const addUser = require("./db/dbQueries")
 const app = express();
 const PORT = process.env.PORT || "3000";
 
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.set("views", path.join(__dirname, "views"));
@@ -14,30 +15,32 @@ app.set("view engine", "ejs");
 app.get('/users/', (req, res) => {
     const id = req.query.id;
 
-    console.log(id)
-
     if (!id) {
         res.status(400)
         res.send("No id introduced")
     } else {
-        console.log(id)
         preference.getPreferences(id, res)
     }
 });
 
-app.get("/addUser/:UserName", (req, res) => {
-    let detail = {
-        UserName: req.params.UserName,
-        Password: req.query.Password,
-        User: req.query.User
+app.post("/signup/", (req, res) => {
+
+    // check if all field s are filled
+
+    if (!req.body.name || !req.body.password) {
+        res.status(400);
+        res.send("Please fill all fields");
+        return;
     }
-    if ((!detail.Password || !detail.User)) {
-        let err = "Password or userNameToDisplay not introduced"
-        res.status(400)
-        res.send(err)
-    } else {
-        addUser.addUserQuery(detail, res)
+
+    // create user object
+    let user = {
+        name: req.body.name,
+        password: req.body.password,
     }
+
+    // add user to db
+    addUser.addUserQuery(user, res)
 })
 
 app.get('/', require('./routes/index'));

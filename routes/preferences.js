@@ -22,39 +22,42 @@ module.exports = {
     WHERE u."Id" != $1`
     const values = [id];
   
-    client.query(queryUser, values, (err, result) => {
+    // get user data
+    client.all(queryUser, values, (err, rows) => {
       if (err) {
         res.status(500).send(err);
       } else {
-         userData = result.rows.map((row) => ({
-            id: row.Id,
-            name: row.UserName,
+         userData = rows.map((row) => ({
+            id: row.id,
+            name: row.name,
             preference: row.CommuneThings,
           }));
       }
     });
 
-    client.query(queryComp, values, (err, result) => {
-        if (err) {
-          res.status(500).send(err);
-        } else {
-           userDataComp = result.rows.map((row) => ({
-              id: row.Id,
-              name: row.UserName,
-              preference: row.CommuneThings,
-            }));
-            let dataToBeSent = {
-                userData: userData,
-                usersToCompare: userDataComp
-            }
-            let otherUserCompatability = compare.findCommonThings(dataToBeSent)
-            let rezult ={
-                userId: userData[0].id,
-                userName: userData[0].name,
-                userCompatabilityWithOtherUsers: otherUserCompatability 
-            } 
-          res.send(rezult);
-        }
-      });
-    }
-    }
+    // get users to compare
+    db.all(queryComp, values, (err, rows) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+         userDataComp = rows.map((row) => ({
+            id: row.id,
+            name: row.name,
+            preference: row.CommuneThings,
+          }));
+          let dataToBeSent = {
+              userData: userData,
+              usersToCompare: userDataComp
+          }
+          let otherUserCompatability = compare.findCommonThings(dataToBeSent)
+          let rezult ={
+              userId: userData[0].id,
+              userName: userData[0].name,
+              userCompatabilityWithOtherUsers: otherUserCompatability 
+          } 
+        res.send(rezult);
+      }
+    });
+    
+  }
+}
