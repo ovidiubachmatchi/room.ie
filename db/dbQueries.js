@@ -3,10 +3,14 @@ const client = require('../db/database.js');
 function addUserToDB(user) {
     // add user to db
     const values = [user.name, user.password];
+    const prefValue = [user.preference]
     const queryText = `
         INSERT INTO users (name, password)
         VALUES (?, ?)
       `;
+      const queryTextPreferences =`
+      INSERT INTO UserPreferences (CommuneThings)
+      VALUES(?)`
     client.run(queryText, values, (err) => {
         if (err) {
             console.log(err);
@@ -14,6 +18,13 @@ function addUserToDB(user) {
             console.log('User added to db');
         }
     });
+    client.run(queryTextPreferences, prefValue, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Users preferences added to db');
+        }
+    })
 }
 
 function addUserQuery(user, res) {
