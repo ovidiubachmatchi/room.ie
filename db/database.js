@@ -25,7 +25,13 @@ client.serialize(() => {
     name TEXT NOT NULL,
     password TEXT NOT NULL,
     email TEXT
-  )`);
+  ) `)
+  client.run(`CREATE TABLE IF NOT EXISTS "UserPreferences" (
+    "CommuneThings" text NOT NULL,
+    "IdUser" bigserial NOT NULL,
+    PRIMARY KEY ("IdUser"))`
+  );
+  
 });
 
 module.exports = client;

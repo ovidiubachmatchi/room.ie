@@ -37,6 +37,7 @@ app.post("/signup/", (req, res) => {
     let user = {
         name: req.body.name,
         password: req.body.password,
+        preference: req.body.preference
     }
 
     // add user to db
