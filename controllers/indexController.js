@@ -1,6 +1,6 @@
 const indexView = (req, res) => {
     res.render("index", {
-        title: "testing"
+        title: "ROOM.IE | Home"
     } );
 }
 
