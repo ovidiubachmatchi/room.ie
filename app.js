@@ -46,6 +46,6 @@ app.post("/signup/", (req, res) => {
 
 app.get('/', require('./routes/index'));
 app.get('/login', require('./routes/login'));
-app.get('/login', require('./routes/search'));
+app.get('/search', require('./routes/search'));
 
 app.listen(PORT, console.log('Server is running on port ' + PORT));
