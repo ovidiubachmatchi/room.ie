@@ -4,6 +4,4 @@ const {indexView} = require('../controllers/indexController');
 
 router.get('/', indexView);
 
-
-
 module.exports = router;

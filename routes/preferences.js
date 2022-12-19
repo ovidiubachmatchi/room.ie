@@ -6,20 +6,20 @@ const compare = require('../helpers/compare')
 
 module.exports = {
     getPreferences: async (id,res) => {
-    let userData
+    let userData = ""
     let usersToBeCompart
     const queryUser = `
     SELECT u.*, up.*
-    FROM "Users" AS u
-    INNER JOIN "UserPreferences" AS up
-    ON u."Id" = up."IdUser"
-    WHERE u."Id" = $1
+    FROM "users" AS u
+    FULL OUTER JOIN "UserPreferences" AS up
+    ON u."id" = up."IdUser"
+    WHERE u."id" = ?
     `;
     const queryComp = `SELECT u.*, up.*
-    FROM "Users" AS u
-    INNER JOIN "UserPreferences" AS up
-    ON u."Id" = up."IdUser"
-    WHERE u."Id" != $1`
+    FROM "users" AS u
+    FULL OUTER JOIN "UserPreferences" AS up
+    ON u."id" = up."IdUser"
+    WHERE u."id" != ?`
     const values = [id];
   
     // get user data
@@ -46,13 +46,15 @@ module.exports = {
             name: row.name,
             preference: row.CommuneThings,
           }));
+
           let dataToBeSent = {
               userData: userData,
               usersToCompare: userDataComp
           }
+          
           let otherUserCompatability = compare.findCommonThings(dataToBeSent)
           if(otherUserCompatability === "no users"){
-             rezult = "thre are no users"
+             rezult = "user doesn't exists"
           }else{
            rezult ={
               userId: userData[0].id,
@@ -63,6 +65,6 @@ module.exports = {
         res.send(rezult);
       }
     });
-    
+
   }
 }

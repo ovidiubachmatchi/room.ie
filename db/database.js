@@ -16,8 +16,6 @@ let client = new sqlite3.Database('database.db', (err) => {
 // if one of the queries fails, all the queries will be rolled back
 // if all the queries are successful, all the queries will be committed
 client.serialize(() => {
-  console.log('connected to database');
-
   // the table will be created only if it does not exist
   // the table wont change its structure if it already exists
   client.run(`CREATE TABLE IF NOT EXISTS users (
@@ -25,13 +23,22 @@ client.serialize(() => {
     name TEXT NOT NULL,
     password TEXT NOT NULL,
     email TEXT
-  ) `)
+  )`);
+
   client.run(`CREATE TABLE IF NOT EXISTS "UserPreferences" (
-    "CommuneThings" text NOT NULL,
-    "IdUser" bigserial NOT NULL,
-    PRIMARY KEY ("IdUser"))`
+    "CommuneThings" text,
+    "IdUser" INTEGER PRIMARY KEY AUTOINCREMENT
+    )`
   );
-  
+
+  client.run(`CREATE TABLE IF NOT EXISTS posts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    userID INTEGER NOT NULL,
+    city TEXT NOT NULL,
+    moveInDate TEXT NOT NULL,
+    moveOutDate TEXT NOT NULL,
+    description TEXT NOT NULL
+  )`);
 });
 
 module.exports = client;

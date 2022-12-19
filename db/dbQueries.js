@@ -1,7 +1,6 @@
-const client = require('../db/database.js');
-
 function addUserToDB(user) {
     // add user to db
+    const client = require('../db/database.js');
     const values = [user.name, user.password];
     const prefValue = [user.preference]
     const queryText = `
@@ -18,6 +17,7 @@ function addUserToDB(user) {
             console.log('User added to db');
         }
     });
+
     client.run(queryTextPreferences, prefValue, (err) => {
         if (err) {
             console.log(err);
@@ -25,11 +25,14 @@ function addUserToDB(user) {
             console.log('Users preferences added to db');
         }
     })
+
 }
 
 function addUserQuery(user, res) {
+    const client = require('../db/database.js');
     // check if user already exists query
     const checkUserQuery = `SELECT * FROM users WHERE name = ?`;
+    
     client.get(checkUserQuery, [user.name], (err, row) => {
         // if call to db fails
         if (err) {
