@@ -31,6 +31,13 @@ client.serialize(() => {
     "IdUser" bigserial NOT NULL,
     PRIMARY KEY ("IdUser"))`
   );
+
+
+  client.run(`CREATE TABLE IF NOT EXISTS "Posts" (
+    "Location" text,
+    "Description" text
+    IdUserSesion INTEGER PRIMARY KEY)`
+  );
   
 });
 
