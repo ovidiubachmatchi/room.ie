@@ -31,14 +31,15 @@ client.serialize(() => {
     )`
   );
 
-  client.run(`CREATE TABLE IF NOT EXISTS posts (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    userID INTEGER NOT NULL,
-    city TEXT NOT NULL,
-    moveInDate TEXT NOT NULL,
-    moveOutDate TEXT NOT NULL,
-    description TEXT NOT NULL
-  )`);
+
+
+  client.run(`CREATE TABLE IF NOT EXISTS "Posts" (
+    "Location" text,
+    "Description" text
+    IdUserSesion INTEGER PRIMARY KEY)`
+  );
+  
+
 });
 
 module.exports = client;
