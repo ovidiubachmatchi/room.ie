@@ -1,0 +1,19 @@
+<%- include('partials/header') %>
+
+<div class="page-container">
+    <div class="branding-container">
+        <div class="title-container">
+        <span class="title">ROOM.IE</span>
+        </div>
+    </div>
+
+    <form class="login-form" action="/post" method="GET">
+        <input name="username" class="email-input" placeholder="Location"/>
+        <textarea name="password" class="password-input" placeholder="Description"/></textarea>
+        <br>
+        <button class="login-button">Post</button>
+    </form>
+    
+    </div>
+
+<%- include('partials/footer') %>

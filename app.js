@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const path = require("path");
 const preference = require("./routes/preferences")
 const addUser = require("./db/dbQueries")
@@ -12,6 +13,12 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use(session({
+    secret: 'my-secret',
+    resave: false,
+    saveUninitialized: true
+}));
+
 app.get('/users/', (req, res) => {
     const id = req.query.id;
 
@@ -22,6 +29,39 @@ app.get('/users/', (req, res) => {
         preference.getPreferences(id, res)
     }
 });
+
+app.post("/post/", (req, res) => {
+    if (!req.body.name || !req.body.password) {
+        res.status(400);
+        res.send("Please fill all fields");
+        return;
+    }
+
+    // create user object
+    let user = {
+        name: session[id],
+
+    }
+
+    // add user to db
+    addUser.addUserQuery(user, res)
+})
+
+app.get("/signup", (req, res) => {
+    res.render("signup", {
+        title: "ROOM.IE | Login",
+        text: "Please fill out the form",
+        login: "Login"
+    } );
+})
+
+app.get("/post", (req, res) => {
+    res.render("post", {
+        title: "ROOM.IE | Login",
+        text: "Please fill out the form",
+        login: "Login"
+    } );
+})
 
 app.post("/signup/", (req, res) => {
 
@@ -44,8 +84,11 @@ app.post("/signup/", (req, res) => {
     addUser.addUserQuery(user, res)
 })
 
+
+
 app.get('/', require('./routes/index'));
+
 app.get('/login', require('./routes/login'));
-app.get('/login', require('./routes/search'));
+app.get('/search', require('./routes/search'));
 
 app.listen(PORT, console.log('Server is running on port ' + PORT));

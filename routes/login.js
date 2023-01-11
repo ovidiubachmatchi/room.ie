@@ -4,4 +4,5 @@ const {loginView} = require('../controllers/loginController');
 
 router.get('/login', loginView);
 
+
 module.exports = router;

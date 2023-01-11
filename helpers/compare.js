@@ -1,6 +1,10 @@
 module.exports = {
     findCommonThings: (userData => {
-      if(userData.userData.length !=0 && userData.usersToCompare.length !=0){
+      console.log(userData)
+      if(userData.userData.length !=0){
+        if(userData.userData[0].preference === null ) {
+          return userData.usersToCompare;
+        } else {
         let userToFindPartener = userData.userData[0].preference.split(',')
         const users = userData.usersToCompare.concat(userData.usersToCompare);
         const preferences = users.map((user) => ({
@@ -31,6 +35,7 @@ module.exports = {
         console.log(countPerKey)
 
         return result = calculateTheProcentOfCommunPreference(commonPreferencesCount,countPerKey)
+        }
       }else{
         return result = "no users"
       }

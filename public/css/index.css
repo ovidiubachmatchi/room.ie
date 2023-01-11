@@ -20,9 +20,11 @@ body {
     padding: 0 1rem 0 1rem;
 }
 
-#navbar #logo p {
+#navbar #logo a {
+    text-decoration: none;
     font-size: 1.5rem;
     font-weight: 700;
+    color: black;
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
@@ -150,3 +152,87 @@ body {
         border-radius: 0.5rem;
     }
 }
+
+.login-button {
+    background-color: #000080;
+    /* Makes the text white. */
+    color: #FFFFFF;
+    text-align: center;
+    /* Add round borders. */
+    border-radius: 8px;
+    /* Padding works life an internal-margin. */
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top:  20px;
+    padding-bottom:  20px;
+    font-size: 20px;
+    /* Apply our custom font. */
+    font-family: "Copperplate", Fantasy;
+    /* <button> tag will add default styling, we want to discard it. */
+    border:  none;
+  }
+
+  .email-input {
+    border:  1px solid #000080;
+    background:  transparent;
+    padding:  20px 40px 20px 40px;
+    border-radius:  10px;
+    color:  black;
+    margin-bottom: 10px;
+    margin-top: 50px;
+  }
+
+  .password-input {
+    border:  1px solid #000080;
+    background:  transparent;
+    padding:  20px 40px 20px 40px;
+    border-radius:  10px;
+    color:  black;
+    margin-bottom: 10px;
+  }
+
+  .login-form {
+    /*  Use flexbox. */
+    display:  flex;
+    /* By default, it will be in a single horizontal row. */
+    flex-direction: column;
+    /* Align vertically and horizontally. */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .branding-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+    margin-top: 50px;
+  }
+  
+  .title-container {
+    display:  flex;
+    flex-direction: column;
+    /* Vertical alignment. */
+    justify-content: center;
+    /* This time, we don't want horizontal alignment. */
+    /* Flex-start would mean left-alignment. */
+    align-items: flex-start;
+    font-family: "Copperplate", Fantasy;
+    font-size: 20px;
+  }
+
+  .title-container span{
+    text-align: center;
+    width: 100%;
+  }
+
+  .page-container {
+    display:  flex;
+    justify-content: center;
+    align-items:  center;
+    flex-wrap:  wrap;
+    flex-direction: column;
+  }
+
+  #sign-up-href {
+    text-decoration: none;
+  }
